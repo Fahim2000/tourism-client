@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const ManageAllEvents = () => {
+const ManageAllTrips = () => {
   const [manageAllUsers, setManageAllUsers] = useState([]);
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(0);
   document.title = "Manage All Trips";
   useEffect(() => {
     axios
-      .get("http://localhost:5000/manageAllUsers")
+      .get("https://peaceful-castle-01942.herokuapp.com/manageAllUsers")
       .then((res) => setManageAllUsers(res.data));
   }, [status]);
 
@@ -15,7 +15,9 @@ const ManageAllEvents = () => {
     const proceed = window.confirm("Are you sure, you want to delete ?");
     if (proceed) {
       axios
-        .delete(`http://localhost:5000/deleteUsersTrip/${id}`)
+        .delete(
+          `https://peaceful-castle-01942.herokuapp.com/deleteUsersTrip/${id}`
+        )
         .then((res) => {
           if (res.data.deletedCount > 0) {
             const remaining = manageAllUsers.filter((tour) => tour._id !== id);
@@ -26,12 +28,14 @@ const ManageAllEvents = () => {
   };
 
   const handleEditStatus = (id) => {
-    axios.put(`http://localhost:5000/updateStatus/${id}`).then((res) => {
-      if (res.data.modifiedCount) {
-        alert("Status Updated to Approved");
-        setStatus(true);
-      }
-    });
+    axios
+      .put(`https://peaceful-castle-01942.herokuapp.com/updateStatus/${id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          alert("Status Updated to Approved");
+          setStatus(status + 1);
+        }
+      });
   };
 
   if (!manageAllUsers) {
@@ -43,21 +47,21 @@ const ManageAllEvents = () => {
     );
   } else if (manageAllUsers.length === 0) {
     return (
-      <div className="container  text-center" style={{ marginBottom: "380px" }}>
+      <div className="container  text-center" style={{ marginBottom: "530px" }}>
         <div>
           <img
             className="img-fluid"
-            src="https://i.ibb.co/277JQj1/nos-removebg-preview-1.png"
+            src="https://cdn.iconscout.com/icon/free/png-256/data-not-found-1965034-1662569.png"
             alt=""
           />
         </div>
-        <h2 className="text-danger">No Result Found !</h2>
+        <h2 className="text-danger">No trips available</h2>
       </div>
     );
   } else {
     return (
       <div
-        style={{ marginBottom: "300px" }}
+        style={{ marginBottom: "470px" }}
         className="container table-responsive "
       >
         <table className="table caption-top mt-3">
@@ -82,7 +86,7 @@ const ManageAllEvents = () => {
           <tbody>
             {manageAllUsers.map((user, index) => {
               return (
-                <tr>
+                <tr key={user._id}>
                   <th scope="row">{index + 1}</th>
                   <td>{user.userName}</td>
                   <td>{user.userEmail}</td>
@@ -95,7 +99,7 @@ const ManageAllEvents = () => {
                   <td>
                     {" "}
                     <i
-                      className="btn btn-primary mx-4 bi bi-check2-square"
+                      className="btn btn-primary mx-4 bi "
                       onClick={() => handleEditStatus(user._id)}
                     >
                       {" "}
@@ -107,7 +111,7 @@ const ManageAllEvents = () => {
                       className="btn btn-danger"
                       onClick={() => handleDelete(user._id)}
                     >
-                      <i class="bi bi-trash"></i>
+                      Delete
                     </button>
                   </td>
                 </tr>
@@ -120,4 +124,4 @@ const ManageAllEvents = () => {
   }
 };
 
-export default ManageAllEvents;
+export default ManageAllTrips;

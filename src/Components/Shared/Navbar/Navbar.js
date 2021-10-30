@@ -9,11 +9,8 @@ const NavBar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            <span
-              className="ms-2  text-warning custom-style p-2 "
-              style={{ border: "1px solid white", borderRadius: "10px" }}
-            >
-              Tours Club
+            <span className="ms-2  text-warning custom-style p-2 ">
+              Fahim's Tourism guide
             </span>
           </Link>
           <button
@@ -38,25 +35,22 @@ const NavBar = () => {
               {user.email ? (
                 <>
                   <li className="nav-item">
-                    <Link to={`/myEvents`} className="nav-link">
+                    <Link to={`/myTrips`} className="nav-link">
                       My Trips
                     </Link>
                   </li>{" "}
                   <li className="nav-item">
-                    <Link to={`/manageAllEvents`} className="nav-link">
+                    <Link to={`/manageAllTrips`} className="nav-link">
                       Manage All Trips
                     </Link>
                   </li>{" "}
                   <li className="nav-item">
                     <Link to={`/AddMoreTrips`} className="nav-link">
-                      Add More Trips
+                      Add Trips
                     </Link>
                   </li>{" "}
                   {user.displayName ? (
-                    <span
-                      className="me-2 text-dark  bg-success  p-1 px-sm-3 my-sm-2 my-4  fw-bold"
-                      style={{ borderRadius: "20px" }}
-                    >
+                    <span className="me-2 text-dark  bg-info  p-1 px-sm-3 my-sm-2 my-4 fw-bold ">
                       {user.displayName}
                     </span>
                   ) : (

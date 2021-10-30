@@ -5,15 +5,20 @@ const AddMoreTrips = () => {
   const { register, handleSubmit, reset } = useForm();
   document.title = "Add More Trips";
   const onSubmit = (data) => {
-    axios.post("http://localhost:5000/addMoreTrips", data).then((res) => {
-      if (res.data.insertedId) {
-        alert("Trip Added");
-        reset();
-      }
-    });
+    axios
+      .post("https://peaceful-castle-01942.herokuapp.com/addMoreTrips", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("Trip Added");
+          reset();
+        }
+      });
   };
   return (
-    <div className="container mt-5" style={{ height: "80vh" }}>
+    <div
+      className="container mt-5"
+      style={{ height: "100vh", marginBottom: "200px" }}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label forhtml="exampleInputTripName" className="form-label">
@@ -59,6 +64,7 @@ const AddMoreTrips = () => {
         <input
           //   className="btn btn-primary"
           type="submit"
+          className="btn btn-dark"
           value="Add Trip"
         />
       </form>

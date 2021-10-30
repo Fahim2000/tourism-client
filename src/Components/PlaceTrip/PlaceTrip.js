@@ -14,25 +14,27 @@ const PlaceTrip = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/allTours")
+      .get("https://peaceful-castle-01942.herokuapp.com/allTours")
 
       .then((res) => setDetails(res.data));
   }, []);
 
   const newData = details.find((datas) => datas._id === tourId);
-  console.log(newData);
+
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     data.img_url = newData?.img_url;
     data.status = "Pending";
-    axios.post("http://localhost:5000/userEventData", data).then((res) => {
-      if (res.data.acknowledged) {
-        alert("data Inserted");
-        history.push("/myEvents");
-        reset();
-      }
-    });
+    axios
+      .post("https://peaceful-castle-01942.herokuapp.com/userEventData", data)
+      .then((res) => {
+        if (res.data.acknowledged) {
+          alert("Your trip has been booked successfully");
+          history.push("/myTrips");
+          reset();
+        }
+      });
   };
 
   if (!newData) {
@@ -43,7 +45,7 @@ const PlaceTrip = () => {
     );
   } else {
     return (
-      <div className="container mt-5" style={{ marginBottom: "350px" }}>
+      <div className="container mt-5" style={{ marginBottom: "480px" }}>
         <div className="row align-items-center">
           <div className="col-md-7">
             <div>
@@ -142,7 +144,7 @@ const PlaceTrip = () => {
                 </div>
 
                 <input
-                  className="btn btn-primary"
+                  className="btn btn-dark"
                   type="submit"
                   value="Register Trip"
                 />

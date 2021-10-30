@@ -17,31 +17,30 @@ const Login = () => {
     });
   };
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "50vh", marginBottom: "400px" }}
-    >
-      <button className="btn btn btn-primary fs-4" onClick={handleUsingGoogle}>
-        <i class="fab fa-google"></i> Login with google
-      </button>
+    <div className="container " style={{ marginBottom: "520px" }}>
+      <div
+        className="row align-items-center justify-content-center "
+        style={{ height: "50vh" }}
+      >
+        <div className="col-md-3">
+          <div>
+            <button
+              className="btn btn btn-dark fs-4"
+              onClick={handleUsingGoogle}
+            >
+              <i className="fab fa-google"></i> Login with google
+            </button>
+          </div>
+        </div>
+        <div className="col-md-8">
+          <img
+            src="https://i.ibb.co/bBWQDxH/undraw-Login-re-4vu2.png"
+            className="img-fluid"
+            alt=""
+          />
+        </div>
+      </div>
     </div>
-    // <div className="center ">
-    //   <div className="card1">
-    //     <button
-    //       className="px-3"
-    //       onClick={handleUsingGoogle}
-    //       style={{ border: "none", borderRadius: "20px" }}
-    //     >
-    //       <img
-    //         src="https://i.ibb.co/y5bnkyg/png-transparent-google-logo-google-search-meng-meng-company-text-logo-removebg-preview.png"
-    //         alt=""
-    //         className="img-fluid "
-    //         style={{ width: "50px" }}
-    //       />{" "}
-    //       Login with google
-    //     </button>
-    //   </div>
-    // </div>
   );
 };
 

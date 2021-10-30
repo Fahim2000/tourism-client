@@ -14,14 +14,17 @@ const Banner = () => {
     >
       <div>
         <h1
-          className="text-light text-center text-capitalize my-4 "
-          style={{ fontSize: "3.2rem" }}
+          className="text-light text-center text-capitalize my-4 px-2"
+          style={{ fontSize: "3rem" }}
         >
-          Let's Make your best <br /> trip ever
+          Select the best trip from our website
         </h1>
-        <h5 className="    text-light  text-center" style={{ color: "gray" }}>
-          Plan and Book your Perfect trip with expert advice. travel tips.
-          destination <br /> information and inspiration from us
+        <h5
+          className="  px-2  text-light  text-center"
+          style={{ color: "gray" }}
+        >
+          You can book the perfect <br /> travel package that will make your
+          vaccation a lot more enjoyable
         </h5>
       </div>
     </div>

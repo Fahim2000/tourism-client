@@ -2,48 +2,50 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
-const MyEvent = () => {
+const MyTrip = () => {
   const [myEvents, setMyEvents] = useState([]);
   const { user } = useAuth();
   document.title = "My Trips";
   const email = user.email;
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myEvents/${email}`)
+      .get(`https://peaceful-castle-01942.herokuapp.com/myTrips/${email}`)
       .then((res) => setMyEvents(res.data));
   }, []);
 
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete ?");
     if (proceed) {
-      axios.delete(`http://localhost:5000/deleteTrip/${id}`).then((res) => {
-        if (res.data.deletedCount > 0) {
-          const remaining = myEvents.filter((tour) => tour._id !== id);
-          setMyEvents(remaining);
-        }
-      });
+      axios
+        .delete(`https://peaceful-castle-01942.herokuapp.com/deleteTrip/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            const remaining = myEvents.filter((tour) => tour._id !== id);
+            setMyEvents(remaining);
+          }
+        });
     }
   };
   if (!myEvents || myEvents.length === 0) {
     return (
-      <div className="container  text-center" style={{ marginBottom: "380px" }}>
+      <div className="container  text-center" style={{ marginBottom: "530px" }}>
         <div>
           <img
             className="img-fluid"
-            src="https://i.ibb.co/277JQj1/nos-removebg-preview-1.png"
+            src="https://cdn.iconscout.com/icon/free/png-256/data-not-found-1965034-1662569.png"
             alt=""
           />
         </div>
-        <h2 className="text-danger">No Result Found !</h2>
+        <h2 className="text-danger">No trips available !</h2>
       </div>
     );
   } else {
     return (
-      <div className="container" style={{ marginBottom: "300px" }}>
+      <div className="container" style={{ marginBottom: "450px" }}>
         <div className="row mt-5">
           {myEvents.map((tour) => {
             return (
-              <div className="col-sm-6 my-4 ">
+              <div className="col-sm-6 my-4 " key={tour._id}>
                 <div className=" d-sm-flex   align-items-center shadow-lg h-100 rounded .justify-content-center">
                   <div className="w-50  d-flex justify-content-center align-items-center">
                     <img
@@ -83,4 +85,4 @@ const MyEvent = () => {
   }
 };
 
-export default MyEvent;
+export default MyTrip;

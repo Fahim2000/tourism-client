@@ -4,8 +4,8 @@ import "./App.css";
 import AddMoreTrips from "./Components/AddMoreTrips/AddMoreTrips";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
-import ManageAllEvents from "./Components/ManageAllEvents/ManageAllEvents";
-import MyEvent from "./Components/MyEvent/MyEvent";
+import ManageAllTrips from "./Components/ManageAllTrips/ManageAllTrips";
+import MyTrip from "./Components/MyTrip/MyTrip";
 import NotFound from "./Components/NotFound/NotFound";
 import PlaceTrip from "./Components/PlaceTrip/PlaceTrip";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
@@ -23,17 +23,20 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
+            <Route exact path="/home">
+              <Home />
+            </Route>
             <Route exact path="/login">
               <Login />
             </Route>
             <PrivateRoute exact path="/tourBook/:tourId">
               <PlaceTrip></PlaceTrip>
             </PrivateRoute>
-            <PrivateRoute exact path="/myEvents">
-              <MyEvent></MyEvent>
+            <PrivateRoute exact path="/myTrips">
+              <MyTrip></MyTrip>
             </PrivateRoute>
-            <PrivateRoute exact path="/manageAllEvents">
-              <ManageAllEvents />
+            <PrivateRoute exact path="/manageAllTrips">
+              <ManageAllTrips />
             </PrivateRoute>
             <PrivateRoute exact path="/addMoreTrips">
               <AddMoreTrips />

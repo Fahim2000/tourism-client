@@ -7,10 +7,10 @@ import Subscribe from "../Subscribe/Subscribe";
 
 const Home = () => {
   const [allTours, setAllTours] = useState([]);
-  document.title = "Tours Club";
+  document.title = "Fahim's tourism guide";
   useEffect(() => {
     axios
-      .get("http://localhost:5000/allTours")
+      .get("https://peaceful-castle-01942.herokuapp.com/allTours")
 
       .then((res) => setAllTours(res.data));
   }, []);
@@ -29,16 +29,16 @@ const Home = () => {
     );
   } else {
     return (
-      <div style={{ marginBottom: "300px" }}>
+      <div style={{ marginBottom: "370px" }}>
         <Banner />
         <div className="container my-5">
-          <h2 className="my-3">
-            Most <span className="text-danger"> Popular</span> Places
+          <h2 className="my-3 text-center">
+            Our <span className="text-warning fw-bold"> Travel package</span>
           </h2>
           <div className="row row-cols-1 row-cols-md-3 g-4 ">
             {allTours.map((tour) => {
               return (
-                <div className="col ">
+                <div className="col " key={tour._id}>
                   <div className="card h-100">
                     <img
                       src={tour.img_url}
@@ -50,9 +50,7 @@ const Home = () => {
                       <h5 className="card-title my-4">Rs. {tour.price}</h5>
                       <p className="card-text">{tour.desc.substr(0, 220)}</p>
                       <Link to={`/tourBook/${tour._id}`}>
-                        <button className="w-100 btn btn-success">
-                          Tour Details
-                        </button>
+                        <button className="w-100 btn btn-dark">Book now</button>
                       </Link>
                     </div>
                   </div>
